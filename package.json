@@ -1,0 +1,23 @@
+{
+  "name": "fitchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "compile.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ganache-cli": "^6.12.2",
+    "init": "^0.1.2",
+    "mocha": "^8.3.2",
+    "solc": "^0.8.3",
+    "version": "^0.8.3",
+    "web3": "^1.0.0-beta.26"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}

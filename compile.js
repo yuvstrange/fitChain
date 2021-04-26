@@ -1,0 +1,8 @@
+const path =require('path');
+const fs =require('fs');
+const solc =require('solc');
+
+const fitPath=path.resolve(__dirname, 'contract', 'fit.sol');
+const source = fs.readFileSync(fitPath, 'utf-8');
+
+console.log(solc.compile(source,1));
