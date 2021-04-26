@@ -14,11 +14,11 @@ beforeEach(async () => {
 });
 describe('fitChain Contract test', () => {
   it('deploys a contract',() => {
-    assert.ok(fitChain.options.address);
+    assert.ok(FitChain.options.address);
   });
   it('requires a monthly fee to enter', async()=> {
   try {
-    await fitChain.methods.pay(100).send({
+    await FitChain.methods.pay(100).send({
       from: accounts[1],
       value: 100
     });
@@ -30,7 +30,7 @@ describe('fitChain Contract test', () => {
 });
 it('only owner can transfer tokens', async() => {
   try{
-    await fitChain.methods.Transfer(accounts[1],accounts[0],2200,1).send({
+    await FitChain.methods.Transfer(accounts[1],accounts[0],2200,1).send({
       from: accounts[0]
     });
     assert(false);
@@ -43,7 +43,7 @@ it('only owner can transfer tokens', async() => {
 
 
 it('transfers tokens from sender to receiver, updates balances and triggers Transfer event', async() => {
-    await fitChain.methods.transfer(accounts[1],accounts[0],2200,1)
+    await FitChain.methods.transfer(accounts[1],accounts[0],2200,1)
       .send({ from: accounts[0], value: web3.utils.toWei('0.5','ether') });
     assert.strictEqual(balance[accounts[1]], 500000000000000000);
   });

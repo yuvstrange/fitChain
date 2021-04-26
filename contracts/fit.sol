@@ -3,7 +3,7 @@ pragma solidity ^0.8.3;
 library SafeMath {
     function mul(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a * b;
-        assert(a == 0 || c / a == b);
+        assert(c / a == b);
         return c;
     }
 
@@ -43,7 +43,7 @@ contract FitChain {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    address public owner;
+    address payable public owner;
     mapping(address => uint256) public balance;
     uint256 public numUsers;
     uint256 public fee;
@@ -59,7 +59,7 @@ contract FitChain {
     }
 
     constructor(uint256 feePerMonth, uint256 userDeadline) {
-        owner = msg.sender;
+        owner = payable(msg.sender);
         numUsers = 0;
         fee = feePerMonth;
         deadline = userDeadline;
@@ -75,10 +75,11 @@ contract FitChain {
                     users[id].endAt + deadline);
 
                 if (users[id].isEnd) {
-                    if (!payable(owner).send(users[id].amount)) {
+                    if (!owner.send(users[id].amount)) {
                         revert();
+                    } else {
+                        users[id].isUnsubscribed = true;
                     }
-                    users[id].isUnsubscribed = true;
                 }
             }
 

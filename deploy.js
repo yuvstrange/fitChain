@@ -1,7 +1,8 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
-const provider = require('./provider');
 const { interface, bytecode } = require('./compile');
+const provider = new HDWalletProvider('episode rifle female shock novel pulp avocado squeeze chief lamp tuna drill','https://rinkeby.infura.io/v3/1373872f215b42dca344fe456ae5764e')
+
 
 const web3 = new Web3(provider);
 
