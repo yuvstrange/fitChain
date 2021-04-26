@@ -6,3 +6,6 @@ const fitPath=path.resolve(__dirname, 'contract', 'fit.sol');
 const source = fs.readFileSync(fitPath, 'utf-8');
 
 console.log(solc.compile(source,1));
+
+module.exports = solc.compile(source,1).contracts[':fit'];
+
